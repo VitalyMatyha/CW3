@@ -26,3 +26,28 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+from src.database.data_loader import DataLoader
+
+COMPANIES = {
+    "Yandex": 1740,
+    "Сбер": 3529,
+    "VK": 1547,
+    "Tinkoff": 786,
+    "Ozon": 2180,
+    "Wildberries": 870,
+    "Avito": 845,
+    "Ростелеком": 274,
+    "Газпром": 393,
+    "МТС": 377
+}
+
+def main() -> None:
+    db_creator = DBCreator()
+    db_creator.create_database()
+    db_creator.create_tables()
+
+    loader = DataLoader()
+    loader.load_companies_and_vacancies(COMPANIES)
+
+    print("Данные успешно загружены в БД.")
